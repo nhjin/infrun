@@ -2,14 +2,25 @@ package com.example.order;
 
 import com.example.discount.DiscountPolicy;
 import com.example.discount.FixDiscountPolicy;
+import com.example.discount.RateDiscountPolicy;
 import com.example.member.Member;
 import com.example.member.MemberRepository;
 import com.example.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+    private DiscountPolicy discountPolicy;
+
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); //배우가 직접 캐스팅하는 경우
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId); //회원정보 조회
