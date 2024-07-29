@@ -10,7 +10,7 @@ import com.example.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final DiscountPolicy discountPolicy;
 
     //private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); //배우가 직접 캐스팅하는 경우
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
